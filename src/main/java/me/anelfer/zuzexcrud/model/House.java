@@ -1,5 +1,6 @@
 package me.anelfer.zuzexcrud.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +23,7 @@ public class House {
     private String address;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Citizen owner;
     @OneToMany(mappedBy = "house")
     private List<Citizen> residents;

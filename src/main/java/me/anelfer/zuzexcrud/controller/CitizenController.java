@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1/user")
 public class CitizenController {
 
     private final CitizenService citizenService;
@@ -17,26 +17,22 @@ public class CitizenController {
         this.citizenService = citizenService;
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     public Citizen getUserById(@PathVariable Long id) {
-        System.out.println("id = " + id);
-        Citizen currentUser = UserUtils.getCurrentUser();
-        System.out.println("currentUser = " + currentUser);
         return citizenService.getUserById(id);
     }
 
-    @PostMapping("/user")
+    @PostMapping("/")
     public Citizen createUser(@RequestBody Citizen user) {
-        System.out.println("user = " + user);
         return citizenService.createUser(user);
     }
 
-    @PutMapping("/users/{id}")
+    @PutMapping("/{id}")
     public void updateUser(@PathVariable Long id, @RequestBody Citizen user) {
         citizenService.updateUser(id, user);
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
         citizenService.deleteUser(id);
     }

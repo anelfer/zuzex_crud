@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1/house")
 public class HouseController {
 
     private final HouseService houseService;
@@ -16,25 +16,22 @@ public class HouseController {
         this.houseService = houseService;
     }
 
-    @GetMapping("/houses/{id}")
+    @GetMapping("/{id}")
     public House getHouseById(@PathVariable Long id) {
         return houseService.getHouseById(id);
     }
 
-    // Создание нового дома
-    @PostMapping("/houses")
+    @PostMapping("/")
     public void createHouse(@RequestBody House house) {
         houseService.createHouse(house);
     }
 
-    // Обновление информации о доме
-    @PutMapping("/houses/{id}")
+    @PutMapping("/{id}")
     public void updateHouse(@PathVariable Long id, @RequestBody House house) {
         houseService.updateHouse(id, house);
     }
 
-    // Удаление дома
-    @DeleteMapping("/houses/{id}")
+    @DeleteMapping("/{id}")
     public void deleteHouse(@PathVariable Long id) {
         houseService.deleteHouse(id);
     }

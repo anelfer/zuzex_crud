@@ -29,7 +29,7 @@ public class SecurityConfig {
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers("/auth").permitAll();
-                    auth.requestMatchers("/api/v1/user").permitAll();
+                    auth.requestMatchers("/api/v1/user/").permitAll();
                     auth.requestMatchers("/api/**").authenticated();
                 })
                 .userDetailsService(userDetailsService)

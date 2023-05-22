@@ -46,7 +46,6 @@ public class CitizenService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String citizenId) throws UsernameNotFoundException {
-        System.out.println("citizenId = " + citizenId);
         return new ZuzexUserDetails(citizenRepository
                 .findById(Long.valueOf(citizenId))
                 .orElseThrow(() -> new UsernameNotFoundException("User not found")));
